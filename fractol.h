@@ -76,6 +76,7 @@ int		get_color(double iteration, t_vars *vars);
 void	p_put(t_data *data, int x, int y, int color);
 int		handle_keys(int keycode, t_vars *vars);
 int		close_win(t_vars *vars);
+int		clean_on_error(t_vars *vars);
 double	my_atod(char *str);
 int		fish(int px, int py, t_view *view, t_vars *vars);
 int		shuriken(int px, int py, t_view *view, t_vars *vars);

@@ -30,11 +30,11 @@ void	render_frame(t_vars *vars, int (*set)(int, int, t_view *, t_vars *))
 int	animation_loop(t_vars *vars)
 {
 	vars->zoom.current_zoom
-		+= (vars->zoom.target_zoom - vars->zoom.current_zoom) * 0.15;
+		+= (vars->zoom.target_zoom - vars->zoom.current_zoom) * 1;
 	vars->zoom.current_x
-		+= (vars->zoom.target_x - vars->zoom.current_x) * 0.15;
+		+= (vars->zoom.target_x - vars->zoom.current_x) * 1;
 	vars->zoom.current_y
-		+= (vars->zoom.target_y - vars->zoom.current_y) * .15;
+		+= (vars->zoom.target_y - vars->zoom.current_y) * 1;
 	vars->view.zoom = vars->zoom.current_zoom;
 	vars->view.center_x = vars->zoom.current_x;
 	vars->view.center_y = vars->zoom.current_y;

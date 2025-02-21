@@ -15,19 +15,27 @@
 static void	protected_init(t_vars *vars)
 {
 	vars->mlx = mlx_init();
+	if (!vars->mlx)
+		exit(EXIT_FAILURE);
 	vars->win = mlx_new_window(vars->mlx, 640, 480, "Fractol");
+	if (!vars->win)
+	{
+		mlx_destroy_display(vars->mlx);
+		free(vars->mlx);
+		exit(EXIT_FAILURE);
+	}
 	vars->img.img = mlx_new_image(vars->mlx, 640, 480);
+	if (!vars->img.img)
+	{
+		mlx_destroy_window(vars->mlx, vars->win);
+		mlx_destroy_display(vars->mlx);
+		free(vars->mlx);
+		exit(EXIT_FAILURE);
+	}
 	vars->img.addr = mlx_get_data_addr(vars->img.img, &vars->img.bits_per_pixel,
 			&vars->img.line_length, &vars->img.endian);
-	if (!vars->mlx || !vars->win || !vars->img.img || !vars->img.addr)
-	{
-		free (vars->mlx);
-		free (vars->win);
-		free (vars->img.img);
-		free (vars->img.addr);
-		close_win(vars);
-		exit(0);
-	}
+	if (!vars->img.addr)
+		clean_on_error(vars);
 }
 
 static void	set_colors(t_vars *vars)

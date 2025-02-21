@@ -1,1 +1,1 @@
-#clone repor and run make then ./fractol
+#Clone and run make all then ./fractol

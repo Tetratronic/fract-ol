@@ -21,3 +21,13 @@ int	close_win(t_vars *vars)
 	exit(0);
 	return (0);
 }
+
+int	clean_on_error(t_vars *vars)
+{
+	mlx_destroy_image(vars->mlx, vars->img.img);
+	mlx_destroy_window(vars->mlx, vars->win);
+	mlx_destroy_display(vars->mlx);
+	free(vars->mlx);
+	exit(EXIT_FAILURE);
+	return (0);
+}
